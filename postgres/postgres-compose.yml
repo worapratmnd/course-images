@@ -3,7 +3,7 @@ version: '3.1'
 
 services:
 
-  db:
+  postgresdb:
     image: postgres
     restart: always
     environment:
@@ -18,3 +18,11 @@ services:
     restart: always
     ports:
       - 28080:8080
+
+  web:
+    image: woraprat/node-web-app
+    restart: always
+    ports:
+      - 3000:3000
+    depends_on:
+      - postgresdb
